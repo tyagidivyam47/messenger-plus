@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
 import { signOut } from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
@@ -8,8 +8,9 @@ import { useSelector } from "react-redux";
 const Navbar = () => {
   // console.log(auth.currentUser);
   // console.log(auth);
-
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
+
   // console.log("Navbar Users : ", user);
 
   const logoutHandler = async () => {
@@ -17,10 +18,11 @@ const Navbar = () => {
       isOnline: false,
     });
     await signOut(auth);
+    navigate("/login");
   };
 
   return (
-    <div className="flex items-center justify-between px-3 h-20 bg-orange-700 ">
+    <div className="flex items-center justify-between px-3 h-20 bg-orange-700 shadow-lg border-orange-800 border-b-2">
       <h1 className="text-3xl">
         {" "}
         <Link className="text-orange-300" to="/">
@@ -38,7 +40,7 @@ const Navbar = () => {
               <Link className="hover:text-orange-300" to="/profile">
                 Profile
               </Link>
-              <button className="hover:text-orange-300" onClick={logoutHandler}>
+              <button className="text-orange-700 p-2 rounded-lg bg-white transition hover:text-orange-300 hover:bg-orange-700" onClick={logoutHandler}>
                 Logout
               </button>{" "}
             </div>
@@ -47,7 +49,7 @@ const Navbar = () => {
               <Link className="hover:text-orange-300" to="/register">
                 Register
               </Link>
-              <Link className="hover:text-orange-300" to="/login">
+              <Link className="text-orange-700 p-2 rounded-lg bg-white transition hover:text-orange-300 hover:bg-orange-700" to="/login">
                 Login
               </Link>{" "}
             </div>

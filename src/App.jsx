@@ -1,7 +1,7 @@
 import { onAuthStateChanged } from "firebase/auth";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "./components/navbar";
 import { auth } from "./firebase";
 import Home from "./pages/Home";
@@ -14,24 +14,15 @@ function App() {
   const dispatch = useDispatch();
   onAuthStateChanged(auth, (user) => {
     dispatch(userActions.addUser(user));
-    // console.log("User :", user);
   });
 
-  // const updateUserStore = async () =>{
-  //   await onAuthStateChanged(auth, (user) =>{
-  //     userActions.addUser(user);
-  //     console.log("User :", user);
-  //   })
-  // }
-
-  // useEffect(()=>{
-  //   updateUserStore();
-  // },[])
+  const user = useSelector((state) => state.user.user);
 
   return (
     <div className="space-y-28">
       <Navbar />
       <Routes>
+        {!user && <Route path="/" exact element={<Navigate to="/login" />} />}
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
