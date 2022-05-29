@@ -23,6 +23,9 @@ function App() {
       <Navbar />
       <Routes>
         {!user && <Route path="/" exact element={<Navigate to="/login" />} />}
+        {user && <Route path="/login" exact element={<Navigate to="/" />} />}
+        {user && <Route path="/register" exact element={<Navigate to="/" />} />}
+
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
