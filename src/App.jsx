@@ -19,7 +19,7 @@ function App() {
   const user = useSelector((state) => state.user.user);
 
   return (
-    <div className="space-y-28">
+    <div className="space-y-14">
       <Navbar />
       <Routes>
         {!user && <Route path="/" exact element={<Navigate to="/login" />} />}
