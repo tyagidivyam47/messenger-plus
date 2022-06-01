@@ -72,7 +72,7 @@ const Home = () => {
       setMsgs(arr);
     });
 
-    console.log(msgs);
+    // console.log(msgs);
 
     // get last message b/w logged in user and selected user
     // const docSnap = await getDoc(doc(db, "lastMsg", id));
@@ -113,7 +113,7 @@ const Home = () => {
   return (
     <div
       className="relative grid overflow-hidden h-96 w-full"
-      style={{ gridTemplateColumns: "1fr 3fr", height: "30rem" }}
+      style={{ gridTemplateColumns: "1fr 3fr", height: "30rem" } }
     >
       <div className="border-r-2 border-orange-700 overflow-y-auto space-y-8 pb-4">
         {users.map((user) => (
@@ -132,7 +132,7 @@ const Home = () => {
               {msgs.length ? (
                 msgs.map((msg, i) => <Messeges key={i} msg={msg} user1={user1} />)
               ) : (
-                <h1>Empty</h1>
+                <h1 className="text-xl text-center font-bold">Send messege to start conversation</h1>
               )}
             </div>
 

@@ -9,7 +9,7 @@ const Profile = () => {
   const [img, setImg] = useState("");
   const [user, setUser] = useState();
   // const authA = auth;
-  console.log(img);
+  // console.log(img);
   // console.log(auth);
 
   // console.log(img);
